@@ -1,15 +1,23 @@
 CC = g++
 CFLAGS = -Wall -Wextra -std=c++17
-EXECUTABLE = extended_euclidean
+EXECUTABLE = main
 
-# Add more source files here if needed
-SOURCES = main.cpp Extended-Euclidean/Extended-Euclidean.cpp
+SOURCES = main.cpp \
+Extended-Euclidean/Extended-Euclidean.cpp \
+Chinese-Remainder/Chinese-Remainder.cpp \
+Diffie-Hellman/Diffie-Hellman.cpp \
+EL-Gamal/EL-Gamal.cpp \
+Miller-Rabin/Miller-Rabin.cpp \
+
+OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(EXECUTABLE)
 
-$(EXECUTABLE): $(SOURCES)
-	$(CC) $(CFLAGS) $(SOURCES) -o $(EXECUTABLE)
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(CFLAGS) $^ -o $@    
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(EXECUTABLE)
-
+	rm -f $(EXECUTABLE) $(OBJECTS)
