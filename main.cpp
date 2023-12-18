@@ -34,12 +34,12 @@ void chinese_remainder_operations() {
 
 
 int main() {
-    // extended_euclidean_operations();
-    // chinese_remainder_operations();
+    extended_euclidean_operations();
+    chinese_remainder_operations();
     doing_ELGamal();//this is the the EL-Gamal function where a hello world is done
-
-    bool result = is_Prime(7, 3);
-
+    int num = 721;
+    bool result = is_Prime(num, 3);
+    printf("is %d prime: %d\n",  num, result);
     
     return 0;
 }

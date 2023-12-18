@@ -6,33 +6,49 @@ using namespace std;
 
 //input n, k iterations of Miller-Rabin, output whether n is prime or not
 
-bool milller_rabin(int n, int k) {
-    //number to test n, for iterations k
-    //odd number d
-    int d = n-1;
-    int count  = 0;
-    while( d%2 == 0 ) {
+int modular_pow(int base, int exponent, int modulus) {
+    int result = 1;
+    while (exponent > 0) {
+        if (exponent % 2 == 1)
+            result = (result * base) % modulus;
+        base = (base * base) % modulus;
+        exponent /= 2;
+    }
+    return result;
+}
+
+bool miller_rabin(int n) {
+    if (n <= 1 || n == 4)
+        return false;
+    if (n <= 3)
+        return true;
+
+    int d = n - 1;
+    int count = 0;
+    while (d % 2 == 0) {
         d /= 2;
         count++;
     }
-    int decomposition = pow(2,count) * d;
-    printf("decomposition of n-1: %d\n", decomposition);
-    //random number a
-    int a = 2 + rand() % (n-4);
-    printf("random number a: %d\n", a);
 
-    //x = a^d mod n
-    int a_d = pow(a,d);;    
-    int x = a_d % n;
-    
+    // int decomposition = (1 << count) * d;
+    int a = 2 + (std::rand() % (n - 4));
+    int x = modular_pow(a, d, n);
 
+    if (x == 1 || x == n - 1)
+        return true;
 
+    for (int i = 0; i < count - 1; i++) {
+        x = modular_pow(x, 2, n);
+        if (x == n - 1)
+            return true;
+    }
+
+    return false;
 }
 
-
 bool is_Prime(int n, int k) {
-    if( n<=1 || n==4 ) return false;
-    if( n<=3 ) return true;
-    return milller_rabin(n, k);
-
+    for (int i = 0; i < k; i++)
+        if (miller_rabin(n) == false)
+            return false;
+    return true;
 }
