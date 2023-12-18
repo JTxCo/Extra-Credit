@@ -3,6 +3,7 @@
 #include "Chinese-Remainder/Chinese-Remainder.h"
 #include "Miller-Rabin/Miller-Rabin.h"
 #include "EL-Gamal/EL-Gamal.h" 
+#include "Elliptic-Curve/Elliptic-Curve.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
@@ -34,12 +35,13 @@ void chinese_remainder_operations() {
 
 
 int main() {
-    extended_euclidean_operations();
-    chinese_remainder_operations();
-    doing_ELGamal();//this is the the EL-Gamal function where a hello world is done
-    int num = 721;
-    bool result = is_Prime(num, 3);
-    printf("is %d prime: %d\n",  num, result);
-    
+    // extended_euclidean_operations();
+    // chinese_remainder_operations();
+    //diffie helman is implemented in the Diffie Hellman folder
+    // doing_ELGamal();//this is the the EL-Gamal function where a hello world is done
+    // int num = 721;
+    // bool result = is_Prime(num, 3);
+    // printf("is %d prime: %d\n",  num, result);
+    do_Point_add();
     return 0;
 }

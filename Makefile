@@ -8,6 +8,7 @@ Chinese-Remainder/Chinese-Remainder.cpp \
 Diffie-Hellman/Diffie-Hellman.cpp \
 EL-Gamal/EL-Gamal.cpp \
 Miller-Rabin/Miller-Rabin.cpp \
+Elliptic-Curve/Elliptic-Curve.cpp \
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
